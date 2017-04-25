@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CheeseMVC.ViewModels
 {
-    public class addCheeseViewModel
+    public class AddCheeseViewModel
     {
         [Required]
         [Display(Name = "Cheese Name")]
@@ -17,32 +17,27 @@ namespace CheeseMVC.ViewModels
         [Required(ErrorMessage = "You must give your cheese a description")]
         public string Description { get; set; }
 
-        public CheeseType Type { get; set; }
+        [Required]
+        [Display(Name = "Category")]
+        public int CategoryID { get; set; }
+        
+        public List<SelectListItem> Categories { get; set; }
 
-        public List<SelectListItem> CheeseTypes { get; set; }
+        public AddCheeseViewModel(IEnumerable<CheeseCategory> categories) {
+            //create select list 
+            Categories = new List<SelectListItem>();
 
-        public addCheeseViewModel() {
-
-            CheeseTypes = new List<SelectListItem>();
-
-            // <option value="0">Hard</option>
-            CheeseTypes.Add(new SelectListItem {
-                Value = ((int) CheeseType.Hard).ToString(),
-                Text = CheeseType.Hard.ToString()
-            });
-
-            CheeseTypes.Add(new SelectListItem
+            foreach (var category in categories)
             {
-                Value = ((int)CheeseType.Soft).ToString(),
-                Text = CheeseType.Soft.ToString()
-            });
-
-            CheeseTypes.Add(new SelectListItem
-            {
-                Value = ((int)CheeseType.Fake).ToString(),
-                Text = CheeseType.Fake.ToString()
-            });
-
+                Categories.Add(new SelectListItem
+                {
+                    Value = ((int)category.ID).ToString(),
+                    Text = category.Name
+                });
+            }
+        }
+ 
+        public AddCheeseViewModel() {
         }
     }
 }
