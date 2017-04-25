@@ -20,18 +20,19 @@ namespace CheeseMVC.Controllers
         public IActionResult Index()
         {
             List<Cheese> cheeses = context.Cheeses.ToList();
+           // IList<Cheese> cheeses = context.Cheeses.ToList();
 
             return View(cheeses);
         }
 
         public IActionResult Add()
         {
-            AddCheeseViewModel addCheeseViewModel = new AddCheeseViewModel();
+            addCheeseViewModel addCheeseViewModel = new addCheeseViewModel();
             return View(addCheeseViewModel);
         }
 
         [HttpPost]
-        public IActionResult Add(AddCheeseViewModel addCheeseViewModel)
+        public IActionResult Add(addCheeseViewModel addCheeseViewModel)
         {
             if (ModelState.IsValid)
             {

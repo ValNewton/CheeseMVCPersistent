@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CheeseMVC.ViewModels
 {
-    public class AddCheeseViewModel
+    public class addCheeseViewModel
     {
         [Required]
         [Display(Name = "Cheese Name")]
@@ -21,7 +21,7 @@ namespace CheeseMVC.ViewModels
 
         public List<SelectListItem> CheeseTypes { get; set; }
 
-        public AddCheeseViewModel() {
+        public addCheeseViewModel() {
 
             CheeseTypes = new List<SelectListItem>();
 
