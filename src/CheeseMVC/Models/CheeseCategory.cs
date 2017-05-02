@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CheeseMVC.Models
 {
@@ -11,6 +8,5 @@ namespace CheeseMVC.Models
         public string Name { get; set; }
 
         public IList<Cheese> Cheeses { get; set; }
-        //cheese property of typ IList<Cheese>
     }
 }

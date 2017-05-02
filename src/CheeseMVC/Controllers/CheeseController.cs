@@ -20,7 +20,7 @@ namespace CheeseMVC.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            //List<Cheese> cheeses = context.Cheeses.ToList();
+            //include categories in list of cheeses using linq request
             IList<Cheese> cheeses = context.Cheeses.Include(c => c.Category)
                 .ToList();
 
@@ -29,7 +29,7 @@ namespace CheeseMVC.Controllers
 
         public IActionResult Add()
         {
-            AddCheeseViewModel addCheeseViewModel = 
+            AddCheeseViewModel addCheeseViewModel =
                 new AddCheeseViewModel(context.Categories.ToList());
             return View(addCheeseViewModel);
         }
@@ -39,11 +39,11 @@ namespace CheeseMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                  //get category from categoryID passed in through view model
+                //get categoryID passed in through viewmodel
                 CheeseCategory newCheeseCategory =
                     context.Categories.Single(c => c.ID == addCheeseViewModel.CategoryID);
 
-                  // Add the new cheese to my existing cheeses
+                // Add new cheese
                 Cheese newCheese = new Cheese
                 {
                     Name = addCheeseViewModel.Name,
